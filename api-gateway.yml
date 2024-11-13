@@ -9,7 +9,12 @@ spring:
                 - id: user-service-route
                   uri: lb://user-service
                   predicates:
-                      - Path=/usersvc/**
+                    - Path=/usersvc/**
+                  filters:
+                    - name: RequestRateLimiter
+                      args:
+                        rate-limiter: "#{@inMemoryRateLimiter}"   # Apply in-memory rate limiter
+                        key-resolver: "#{@ipKeyResolver}"         # Use IP address as key
 gateway:
     rate-limiting:
         requests-per-second: 5
