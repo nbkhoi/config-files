@@ -7,7 +7,7 @@ spring:
         gateway:
             routes:
                 - id: user-service-route
-                  uri: http://user-service
+                  uri: lb://user-service
                   predicates:
                       - Path=/usersvc/**
 gateway:
