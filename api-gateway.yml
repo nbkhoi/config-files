@@ -5,11 +5,11 @@ spring:
         name: api-gateway
     cloud:
         gateway:
-        routes:
-            - id: user-service-route
-              uri: http://user-service
-              predicates:
-                  - Path=/usersvc/**
+            routes:
+                - id: user-service-route
+                  uri: http://user-service
+                  predicates:
+                      - Path=/usersvc/**
 gateway:
     rate-limiting:
         requests-per-second: 5
