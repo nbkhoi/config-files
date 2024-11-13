@@ -3,6 +3,18 @@ server:
 spring:
     application:
         name: api-gateway
+    cloud:
+        gateway:
+        routes:
+            - id: user-service-route
+              uri: http://user-service
+              predicates:
+                  - Path=/usersvc/**
+gateway:
+    rate-limiting:
+        requests-per-second: 5
+        burst-capacity: 25
+        burst-window-ms: 5000
 
 eureka:
     client:
